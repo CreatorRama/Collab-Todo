@@ -1,0 +1,58 @@
+.activity-log {
+  color: white;
+}
+
+.activity-log h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.activity-list {
+  margin-top: 1rem;
+}
+
+.no-activity {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.activity-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-text {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.task-link {
+  color: #a3bffa;
+  font-weight: 500;
+}
+
+.activity-details {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.25rem;
+}
+
+.activity-time {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+}

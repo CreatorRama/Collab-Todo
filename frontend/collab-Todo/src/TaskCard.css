@@ -1,0 +1,142 @@
+.task-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  transition: all 0.3s;
+  animation: cardAppear 0.3s ease-out;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.task-card:active {
+  cursor: grabbing;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.task-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+}
+
+.task-menu {
+  position: relative;
+}
+
+.menu-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 3px;
+  color: #666;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.menu-trigger:hover {
+  background: #f0f0f0;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  min-width: 120px;
+}
+
+.menu-dropdown button {
+  width: 100%;
+  padding: 0.5rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-dropdown button:hover {
+  background: #f0f0f0;
+}
+
+.menu-dropdown button.delete-btn {
+  color: #e74c3c;
+}
+
+.menu-dropdown button.delete-btn:hover {
+  background: rgb(179, 159, 159);
+}
+
+.menu-dropdown button:not(.delete-btn) {
+  color: rgb(75, 131, 69);
+}
+
+.task-description {
+  margin: 0 0 0.75rem 0;
+  word-wrap: break-word;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.task-priority {
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.task-assigned {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.task-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.task-created,
+.task-updated {
+  font-size: 0.7rem;
+  color: #999;
+}
