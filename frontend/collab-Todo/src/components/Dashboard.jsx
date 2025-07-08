@@ -4,7 +4,7 @@ import ActivityLog from './ActivityLog';
 import TaskModal from './TaskModal';
 import ConflictModal from './ConflictModal';
 import './Dashboard.css';
-
+const apiurl=import.meta.env.VITE_BACKEND_URL||"http://localhost:5000/api"
 const Dashboard = ({ user, token, socket, onLogout }) => {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
@@ -55,7 +55,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/tasks', {
+      const response = await fetch(`${apiurl}/tasks`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -71,7 +71,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch('${apiUrl}/users', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -85,7 +85,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const fetchActivities = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/actions', {
+      const response = await fetch('${apiUrl}/actions', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -99,7 +99,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const createTask = async (taskData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/tasks', {
+      const response = await fetch(`${apiurl}/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const updateTask = async (taskId, taskData) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(`${apiurl}/tasks/${taskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const deleteTask = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(`${apiurl}/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -175,7 +175,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const smartAssign = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}/smart-assign`, {
+      const response = await fetch(`${apiurl}/tasks/${taskId}/smart-assign`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -194,7 +194,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
     try {
       const dataToSend = resolution === 'merge' ? mergedData : conflict.newData;
       
-      const response = await fetch(`http://localhost:5000/api/tasks/${conflict.taskId}`, {
+      const response = await fetch(`${apiurl}/tasks/${conflict.taskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -140,3 +140,10 @@
   font-size: 0.7rem;
   color: #999;
 }
+
+@media (max-width:770px) {
+  .task-card {
+  max-width: 55%;
+}
+  
+}

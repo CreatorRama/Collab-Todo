@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       // Verify token and get user info
-      fetch('http://localhost:5000/api/users', {
+      fetch('http://192.168.57.161:5000/api/users', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -25,7 +25,7 @@ const App = () => {
           setUser(userData);
           
           // Initialize socket connection
-          const newSocket = io('http://localhost:5000');
+          const newSocket = io('http://192.168.57.161:5000');
           setSocket(newSocket);
           
           return () => newSocket.close();

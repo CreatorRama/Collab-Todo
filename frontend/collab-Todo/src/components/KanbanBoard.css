@@ -53,8 +53,12 @@
   gap: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 770px) {
   .kanban-board {
     grid-template-columns: 1fr;
   }
+
+  .kanban-column {
+  max-width: 60vw;
+}
 }
