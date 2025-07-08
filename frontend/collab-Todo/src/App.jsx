@@ -1,35 +1,88 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import  { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import io from 'socket.io-client';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    if (token) {
+      // Verify token and get user info
+      fetch('http://localhost:5000/api/users', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res => {
+        if (res.ok) {
+          const userData = JSON.parse(localStorage.getItem('user'));
+          setUser(userData);
+          
+          // Initialize socket connection
+          const newSocket = io('http://localhost:5000');
+          setSocket(newSocket);
+          
+          return () => newSocket.close();
+        } else {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setToken(null);
+        }
+      })
+      .catch(err => {
+        console.error('Token verification failed:', err);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setToken(null);
+      });
+    }
+  }, [token]);
+
+  const login = (token, userData) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setToken(token);
+    setUser(userData);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setToken(null);
+    setUser(null);
+    if (socket) {
+      socket.disconnect();
+      setSocket(null);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route 
+            path="/login" 
+            element={!token ? <Login onLogin={login} /> : <Navigate to="/dashboard" />} 
+          />
+          <Route 
+            path="/register" 
+            element={!token ? <Register onLogin={login} /> : <Navigate to="/dashboard" />} 
+          />
+          <Route 
+            path="/dashboard" 
+            element={token ? <Dashboard user={user} token={token} socket={socket} onLogout={logout} /> : <Navigate to="/login" />} 
+          />
+          <Route path="/" element={<Navigate to={token ? "/dashboard" : "/login"} />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,100 @@
+.conflict-modal {
+  background: rgb(170, 99, 99);
+  border-radius: 10px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+}
+
+.conflict-content {
+  margin: 1.5rem 0;
+}
+
+.conflict-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.conflict-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.conflict-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.version-column {
+  background: #445d77;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.version-column h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.version-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.merge-editor {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.merge-editor h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-actions button:first-child {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.modal-actions button:first-child:hover {
+  background: #e9ecef;
+}
+
+.modal-actions .resolve-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+}
+
+.modal-actions .resolve-btn:hover {
+  background: #5a6fd1;
+}
