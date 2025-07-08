@@ -71,7 +71,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('${apiUrl}/users', {
+      const response = await fetch(`${apiurl}/users`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -85,7 +85,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const fetchActivities = async () => {
     try {
-      const response = await fetch('${apiUrl}/actions', {
+      const response = await fetch(`${apiurl}/actions`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

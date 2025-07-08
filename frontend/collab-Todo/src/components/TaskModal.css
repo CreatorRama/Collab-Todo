@@ -52,8 +52,13 @@
 }
 
 .close-btn {
+  font-size: x-large;
   background: none;
   border: none;
+}
+.close-btn:hover{
+  cursor: pointer;
+  background-color: #333;
 }
 
 .conflict-modal {
