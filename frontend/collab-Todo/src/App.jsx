@@ -5,7 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import './App.css';
-
+const apiurl=import.meta.env.VITE_API_URL || "http://localhost:5000"
 const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       // Verify token and get user info
-      fetch('http://192.168.57.161:5000/api/users', {
+      fetch(`${apiurl}/api/users`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -25,7 +25,7 @@ const App = () => {
           setUser(userData);
           
           // Initialize socket connection
-          const newSocket = io('http://192.168.57.161:5000');
+          const newSocket = io(`${apiurl}`);
           setSocket(newSocket);
           
           return () => newSocket.close();
