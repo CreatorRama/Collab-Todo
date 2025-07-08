@@ -1,8 +1,10 @@
 import {mongoose} from 'mongoose'
+import dotenv from 'dotenv';
+dotenv.config();  
 
 export default async function connectToDatabase() {
   try {
-    await mongoose.connect('mongodb+srv://ap410485:SeetaRam@amans-db.pleyh.mongodb.net/Collab-Todo?retryWrites=true&w=majority&appName=Amans-db');
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected successfully!');
    
   } catch (error) {
