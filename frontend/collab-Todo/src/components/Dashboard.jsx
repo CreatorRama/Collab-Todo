@@ -198,6 +198,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       if (!response.ok) {
         throw new Error('Failed to smart assign task');
       }
+      fetchTasks()
       const data=await fetchActivities()
         setActivities(data)
     } catch (error) {
@@ -224,6 +225,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       if (response.ok) {
         setConflict(null);
         setEditingTask(null);
+        console.log("ram inside handleconflict");
         const data=await fetchActivities()
         setActivities(data)
       }
