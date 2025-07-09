@@ -51,6 +51,7 @@
 .version-details p {
   margin: 0.5rem 0;
   font-size: 0.9rem;
+  word-break: break-all;
 }
 
 .merge-editor {

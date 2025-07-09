@@ -198,7 +198,6 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       if (!response.ok) {
         throw new Error('Failed to smart assign task');
       }
-      fetchTasks()
       const data=await fetchActivities()
         setActivities(data)
     } catch (error) {
