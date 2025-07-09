@@ -13,13 +13,13 @@ connectToDatabase()
 const server = http.createServer(app);
 export const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173","https://collab-todo-black.vercel.app/"],
+    origin: ["https://collab-todo-black.vercel.app"],
     methods: ["GET", "POST"]
   }
 });
 // Middleware
 app.use(cors({
-  origin:["http://localhost:5173","https://collab-todo-black.vercel.app/"]
+  origin:["https://collab-todo-black.vercel.app"]
 }));
 app.use(express.json());
 
