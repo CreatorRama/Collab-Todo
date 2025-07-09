@@ -87,7 +87,7 @@ const ConflictModal = ({ conflict, onResolve, onClose }) => {
               <div className="version-details">
                 <p><strong>Title:</strong> {conflict.newData.title}</p>
                 <p><strong>Description:</strong> {conflict.newData.description}</p>
-                <p><strong>Assigned:</strong> {conflict.newData.assignedUser || 'Unassigned'}</p>
+                <p><strong>Assigned:</strong> {conflict.newData.assignedUser?.username || 'Unassigned'}</p>
                 <p><strong>Priority:</strong> {conflict.newData.priority}</p>
               </div>
             </div>
