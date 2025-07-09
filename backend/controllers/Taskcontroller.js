@@ -148,11 +148,12 @@ export const updateTask = async (req, res) => {
         const changes = [];
         if (title !== undefined && title !== currentTask.title) changes.push(`title to "${title}"`);
         if (status !== undefined && status !== currentTask.status) changes.push(`status to "${status}"`);
+        if (priority !== undefined && priority!==currentTask.priority) changes.push(`priority to ${priority}`); 
         if (assignedUser !== undefined && assignedUser !== currentTask.assignedUser?.toString()) {
             const newUser = assignedUser ? await User.findById(assignedUser) : null;
             changes.push(`assigned to ${newUser ? newUser.username : 'unassigned'}`);
         }
-
+         
         await logAction(req.user.userId, 'Updated task', taskId, `Updated ${changes.join(', ')}`);
 
         // Emit to all connected clients
