@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Auth.css';
-
+const apiurl = import.meta.env.VITE_API_URL;
+if (!apiurl) {
+  console.warn("VITE_API_URL environment variable is not set. Falling back to localhost.");
+}
+const finalApiUrl = apiurl || "http://localhost:5000";
+console.log("Using API URL:", finalApiUrl);
 const Register = ({ onLogin }) => {
   const [formData, setFormData] = useState({
     username: '',
@@ -31,7 +36,7 @@ const Register = ({ onLogin }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch(`${apiurl}/api/register``, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
