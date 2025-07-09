@@ -36,7 +36,7 @@ const Register = ({ onLogin }) => {
     }
 
     try {
-      const response = await fetch(`${apiurl}/api/register``, {
+      const response = await fetch(`${apiurl}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
