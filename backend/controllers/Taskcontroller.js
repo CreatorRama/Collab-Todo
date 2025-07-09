@@ -203,6 +203,7 @@ export const smartAssignTask = async (req, res) => {
         // Find user with fewest active tasks
         let minCount = Infinity;
         let selectedUser = null;
+        
 
         for (const user of users) {
             const userCount = userTaskCounts.find(uc => uc._id.toString() === user._id.toString());

@@ -46,7 +46,12 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       });
       socket.on('smartAssignedTask', (task) => {
         console.log(task);
-        setTasks(prev => [task, ...prev]);
+        setTasks(prev =>{
+          const newT=prev.filter((t)=>{
+            t._id!==task._id
+          })
+          return [...newT,task]
+        });
       });
 
       return () => {
@@ -198,6 +203,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       if (!response.ok) {
         throw new Error('Failed to smart assign task');
       }
+      fetchTasks()
       const data=await fetchActivities()
         setActivities(data)
     } catch (error) {
