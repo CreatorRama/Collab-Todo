@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './TaskCard.css';
 
-const TaskCard = ({ task, onDragStart, onEdit, onDelete, onSmartAssign }) => {
+const TaskCard = ({ task,column, onDragStart, onEdit, onDelete, onSmartAssign }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const getPriorityColor = (priority) => {
@@ -46,14 +46,16 @@ const TaskCard = ({ task, onDragStart, onEdit, onDelete, onSmartAssign }) => {
           </button>
           {showMenu && (
             <div className="menu-dropdown">
-              <button onClick={() => {
+              {
+                column!=='Done' && <button onClick={() => {
                 onEdit(task);
                 setShowMenu(false);
               }}>Edit</button>
-              <button onClick={() => {
+              }
+              {column!=='Done' && column!=='In Progress' && <button onClick={() => {
                 onSmartAssign(task._id);
                 setShowMenu(false);
-              }}>Smart Assign</button>
+              }}>Smart Assign</button>}
               <button 
                 className="delete-btn"
                 onClick={() => {

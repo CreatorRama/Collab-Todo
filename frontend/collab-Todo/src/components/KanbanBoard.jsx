@@ -73,6 +73,7 @@ const KanbanBoard = ({ tasks, users, onUpdateTask, onDeleteTask, onEditTask, onS
               <TaskCard
                 key={task._id}
                 task={task}
+                column={column}
                 users={users}
                 onDragStart={handleDragStart}
                 onEdit={onEditTask}
