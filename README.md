@@ -4,7 +4,7 @@ A modern, real-time collaborative task management application built with React a
 
 ## 🚀 Live Demo
 
-**Live Application:** [https://collab-todo-dusky.vercel.app](https://collab-todo-dusky.vercel.app)
+**Live Application:** [https://collab-todo-black.vercel.app](https://collab-todo-black.vercel.app)
 
 *Demo Video: [Add your demo video link here]*
 
