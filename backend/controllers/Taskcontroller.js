@@ -99,7 +99,7 @@ export const updateTask = async (req, res) => {
         console.log(taskId, title, description, assignedUser, status, priority, version);
 
         // Find current task
-        const currentTask = await Task.findById(taskId);
+        const currentTask = await Task.findById(taskId).populate('assignedUser', 'username').populate('createdBy', 'username')
         if (!currentTask) {
             return res.status(404).json({ message: 'Task not found' });
         }
@@ -108,7 +108,7 @@ export const updateTask = async (req, res) => {
         if (version && currentTask.version !== version) {
             return res.status(409).json({
                 message: 'Conflict detected',
-                currentTask: await Task.findById(taskId).populate('assignedUser', 'username').populate('createdBy', 'username'),
+                currentTask,
                 conflict: true
             });
         }

@@ -5,7 +5,13 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import './App.css';
-const apiurl=import.meta.env.VITE_API_URL || "http://localhost:5000"
+const apiurl = import.meta.env.VITE_API_URL;
+if (!apiurl) {
+  console.warn("VITE_API_URL environment variable is not set. Falling back to localhost.");
+}
+const finalApiUrl = apiurl || "http://localhost:5000";
+console.log("Using API URL:", finalApiUrl);
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));

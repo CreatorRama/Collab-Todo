@@ -4,7 +4,12 @@ import ActivityLog from './ActivityLog';
 import TaskModal from './TaskModal';
 import ConflictModal from './ConflictModal';
 import './Dashboard.css';
-const apiurl=import.meta.env.VITE_API_URL || "http://localhost:5000"
+const apiurl = import.meta.env.VITE_API_URL;
+if (!apiurl) {
+  console.warn("VITE_API_URL environment variable is not set. Falling back to localhost.");
+}
+const finalApiUrl = apiurl || "http://localhost:5000";
+console.log("Using API URL:", finalApiUrl);
 
 const Dashboard = ({ user, token, socket, onLogout }) => {
   const [tasks, setTasks] = useState([]);
