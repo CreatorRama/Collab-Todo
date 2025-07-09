@@ -98,6 +98,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       });
       const data = await response.json();
       setActivities(data);
+      return data
     } catch (error) {
       console.error('Error fetching activities:', error);
     }
@@ -122,6 +123,8 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
       setShowTaskModal(false);
       fetchTasks()
+      const d=await fetchActivities()
+        setActivities(d)
     } catch (error) {
       throw error;
     }
@@ -155,6 +158,8 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
       setEditingTask(null);
       fetchTasks()
+      const d=await fetchActivities()
+        setActivities(d)
       return data;
     } catch (error) {
      throw error
@@ -174,6 +179,8 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
         throw new Error('Failed to delete task');
       }
       fetchTasks()
+      const data=await fetchActivities()
+        setActivities(data)
     } catch (error) {
       console.error('Error deleting task:', error);
     }
@@ -191,6 +198,8 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       if (!response.ok) {
         throw new Error('Failed to smart assign task');
       }
+      const data=await fetchActivities()
+        setActivities(data)
     } catch (error) {
       console.error('Error smart assigning task:', error);
     }
@@ -215,6 +224,8 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
       if (response.ok) {
         setConflict(null);
         setEditingTask(null);
+        const data=await fetchActivities()
+        setActivities(data)
       }
     } catch (error) {
       console.error('Error resolving conflict:', error);
