@@ -198,7 +198,7 @@ const Dashboard = ({ user, token, socket, onLogout }) => {
 
   const handleConflictResolve = async (resolution, mergedData = null) => {
     try {
-      const dataToSend = resolution === 'merge' ? mergedData : conflict.newData;
+      const dataToSend = mergedData
       
       const response = await fetch(`${apiurl}/api/tasks/${conflict.taskId}`, {
         method: 'PUT',
